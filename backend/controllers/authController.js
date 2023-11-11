@@ -17,6 +17,7 @@ const createSendToken = (user, res, statusCode) => {
       Date.now() + process.env.JWT_EXPIRES * 24 * 60 * 60 * 1000
     ),
     httpOnly: true,
+    sameSite: "none",
   };
 
   // If in production set secure to true
@@ -133,7 +134,12 @@ exports.getUser = catchAsync(async (req, res, next) => {
 
 // Logout function
 exports.logout = (req, res, next) => {
-  res.cookie("token", "");
+  const cookieOptions = {
+    sameSite: "none",
+  };
+
+  if (process.env.NODE_ENV === "production") cookieOptions.secure = true;
+  res.cookie("token", "", cookieOptions);
   res.status(200).json({
     status: "success",
     message: "Logout successfully!",

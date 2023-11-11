@@ -17,7 +17,13 @@ const AppError = require("./utils/appError");
 
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://mern-chat-app-1212.netlify.app",
+    methods: "GET,POST,PUT,PATCH,DELETE",
+    credentials: true,
+  })
+);
 
 app.use(helmet());
 app.use(cookieParser());

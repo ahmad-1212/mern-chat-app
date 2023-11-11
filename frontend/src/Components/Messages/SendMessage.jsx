@@ -43,9 +43,10 @@ const SendMessage = ({ setChatMessages }) => {
   const { sendMessage } = useSendMessage();
 
   const [message, setMessage] = useState("");
+  const [searchParams] = useSearchParams();
+
   const { palette } = useTheme();
 
-  const [searchParams] = useSearchParams();
   const chatId = searchParams.get("chat-id");
 
   const handleSendMessage = (e) => {
@@ -55,6 +56,16 @@ const SendMessage = ({ setChatMessages }) => {
 
     socket.emit("stop-typing", chatId);
 
+    setChatMessages((prev) => [
+      ...prev,
+      {
+        _id: Date.now(),
+        content: message,
+        sender: {
+          _id: user._id,
+        },
+      },
+    ]);
     sendMessage(message, {
       onSuccess: (data) => {
         socket.emit("send-message", data.message, user._id);

@@ -2,11 +2,14 @@ import axios from "axios";
 import { uploadImage } from "../utils/uploadImage";
 
 axios.defaults.withCredentials = true;
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 // Search user with query
 export const searchUser = async (query) => {
   try {
-    const res = await axios.get(`/api/v1/users/searchUser?query=${query}`);
+    const res = await axios.get(
+      `${API_BASE_URL}/users/searchUser?query=${query}`
+    );
 
     if (res.data.status !== "success")
       throw new Error("Something went very wrong!");
@@ -29,7 +32,7 @@ export const updateUser = async (data) => {
     }
 
     // update user data
-    const res = await axios.patch("/api/v1/users/updateUser", {
+    const res = await axios.patch(`${API_BASE_URL}/users/updateUser`, {
       name: data.name,
       email: data.email,
       photo: photo,

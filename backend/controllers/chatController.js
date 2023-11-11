@@ -77,21 +77,20 @@ exports.getChatWithId = catchAsync(async (req, res, next) => {
 exports.createGroupChat = catchAsync(async (req, res, next) => {
   const { chatName, users, photo } = req.body;
 
-  // Collect id's of all users
-  const chatUsers = users.map((user) => user._id);
-  chatUsers.push(req.user._id);
+  const usersArr = JSON.parse(users);
+  usersArr.push(req.user._id);
 
   // If users length are less than 3 return an error
-  if (chatUsers.length < 3) {
+  if (users.length < 3) {
     return next(
-      new AppError("There most be atleast three users to creat group!", 400)
+      new AppError("There must be atleast three users to creat group!", 400)
     );
   }
 
   const chat = await Chat.create({
     isChatGroup: true,
     chatName,
-    users: chatUsers,
+    users: usersArr,
     groupAdmin: req.user._id,
     photo,
   });
@@ -125,7 +124,7 @@ exports.removeGroupUser = catchAsync(async (req, res, next) => {
   }
 
   // If chat users are less than 2 delete complete chat
-  if (chat.users.length < 2) {
+  if (chat.users.length < 3) {
     await Chat.findByIdAndDelete(chatId);
   }
 

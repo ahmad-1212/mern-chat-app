@@ -2,11 +2,12 @@ import axios from "axios";
 import { uploadImage } from "../utils/uploadImage";
 
 axios.defaults.withCredentials = true;
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 // Get all chats relating to a login user
 export const getChats = async () => {
   try {
-    const res = await axios.get(`/api/v1/chats`);
+    const res = await axios.get(`${API_BASE_URL}/chats`);
     if (res.data.status !== "success")
       throw new Error("Something went very wrong!");
     return res.data.data.chats;
@@ -18,7 +19,7 @@ export const getChats = async () => {
 // Get single chat with chat id
 export const getChat = async (chatId) => {
   try {
-    const res = await axios.get(`/api/v1/chats/singleChat/${chatId}`);
+    const res = await axios.get(`${API_BASE_URL}/chats/singleChat/${chatId}`);
     if (res.data.status !== "success")
       throw new Error("Something went very wrong!");
 
@@ -31,7 +32,7 @@ export const getChat = async (chatId) => {
 // create a chat
 export const createChat = async (userId) => {
   try {
-    const res = await axios.get(`/api/v1/chats/${userId}`);
+    const res = await axios.get(`${API_BASE_URL}/chats/${userId}`);
 
     return res.data.data.chat;
   } catch (err) {
@@ -50,9 +51,9 @@ export const createGroupChat = async ({ users, groupName, image }) => {
     }
 
     // create group with data
-    const res = await axios.post("/api/v1/chats/createGroupChat", {
+    const res = await axios.post(`${API_BASE_URL}/chats/createGroupChat`, {
       chatName: groupName,
-      users,
+      users: JSON.stringify(users),
       photo,
     });
     if (res.data.status !== "success")
@@ -66,7 +67,7 @@ export const createGroupChat = async ({ users, groupName, image }) => {
 // Function to remove user from group
 export const removeGroupChatUser = async (userId, chatId) => {
   try {
-    const res = await axios.patch("api/v1/chats/removeGroupChatUser", {
+    const res = await axios.patch(`${API_BASE_URL}/chats/removeGroupChatUser`, {
       userId,
       chatId,
     });

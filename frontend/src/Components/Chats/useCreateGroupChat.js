@@ -11,7 +11,7 @@ export const useCreateGroupChat = () => {
       queryClient.invalidateQueries(["chats"]);
     },
     onError: (err) =>
-      toast.error(err.messaeg ?? "Something went wrong, please try again!"),
+      toast.error(err.message ?? "Something went wrong, please try again!"),
   });
 
   return { createGroup, isLoading };

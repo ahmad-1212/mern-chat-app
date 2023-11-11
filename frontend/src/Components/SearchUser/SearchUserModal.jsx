@@ -10,6 +10,7 @@ import ButtonSecondary from "../../ui/ButtonSecondary";
 import Input from "../../ui/Input";
 import { useCreateGroupChat } from "../Chats/useCreateGroupChat";
 import { useUser } from "../Authentication/useUser";
+import SpinnerSmall from "../../ui/SpinnerSmall";
 
 const StyledModal = styled.div`
   background-color: ${(props) => props.colors.grey.light};
@@ -73,8 +74,9 @@ const SearchUserModal = ({ open, onClose, createGroup = false }) => {
 
   const handleCreateGroup = () => {
     const groupName = groupNameInputRef.current.value || user.name + "'s group";
+    const users = selectedUsers.map((usr) => usr._id);
     createGroupFnc(
-      { users: selectedUsers, groupName, image },
+      { users, groupName, image },
       {
         onSuccess: () => {
           onClose();
@@ -153,7 +155,18 @@ const SearchUserModal = ({ open, onClose, createGroup = false }) => {
                   disabled={isLoading}
                   onClick={handleCreateGroup}
                 >
-                  {isLoading ? "Creating group" : "Create group"}
+                  {isLoading ? (
+                    <Box
+                      display="flex"
+                      alignItems="center"
+                      justifyContent="center"
+                    >
+                      <SpinnerSmall />
+                      Creating group
+                    </Box>
+                  ) : (
+                    "Create group"
+                  )}
                 </ButtonSecondary>
               )}
             </Stack>

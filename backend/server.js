@@ -4,7 +4,9 @@ require("dotenv").config({ path: "./config.env" });
 
 const app = require("./app");
 
-const DB = process.env.DB_URL;
+const DB_PASSWORD = process.env.DB_PASSWORD;
+const DB = process.env.DB_URL.replace("<password>", DB_PASSWORD);
+
 const PORT = process.env.PORT || 3000;
 
 // Connect to DB
@@ -42,6 +44,7 @@ let onlineUsers = [];
 
 chatNamespace.on("connection", (socket) => {
   socket.on("user-online", (userId) => {
+    console.log("user joined", socket.id);
     socket.join(userId);
     // eslint-disable-next-line
     !onlineUsers?.some((user) => user.userId === userId) &&

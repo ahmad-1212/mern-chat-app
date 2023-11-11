@@ -80,6 +80,11 @@ const ChatBox = () => {
     }
   }, [notifications, setNotifications, chatId]);
 
+  useEffect(() => {
+    if (chatId || screen > 750) return;
+    setShowSidebare(true);
+  }, [chatId, screen, setShowSidebare]);
+
   return (
     <>
       {chatId && !error && (

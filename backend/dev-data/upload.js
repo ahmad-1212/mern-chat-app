@@ -5,7 +5,8 @@ const path = require("path");
 
 require("dotenv").config({ path: `${__dirname}/../config.env` });
 
-const DB = process.env.DB_URL;
+const DB_PASSWORD = process.env.DB_PASSWORD;
+const DB = process.env.DB_URL.replace("<password>", DB_PASSWORD);
 
 const users = fs.readFileSync(path.join(__dirname, "./users.json"));
 

@@ -142,7 +142,7 @@ const EditUser = ({ setUpdateUser }) => {
           The file you provided is not an image
         </Typography>
       )}
-      <ButtonSecondary type="submit">
+      <ButtonSecondary disabled={isLoading} type="submit">
         {isLoading ? <SpinnerSmall /> : "Update settings"}
       </ButtonSecondary>
     </Form>
