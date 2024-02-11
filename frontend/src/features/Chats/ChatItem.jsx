@@ -6,7 +6,7 @@ import { Box } from "@mui/material";
 import { useUser } from "../Authentication/useUser";
 import { useOnlineUsers } from "../../context/OnlineUsers";
 import { useSidebare } from "../../context/Sidebare";
-import UserAvatar from "../../ui/UserAvatar";
+import UserAvatar from "../../Components/UI/UserAvatar";
 
 const StyledChatItem = styled.li`
   display: grid;

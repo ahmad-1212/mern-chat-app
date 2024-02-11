@@ -66,6 +66,14 @@ exports.getChatWithId = catchAsync(async (req, res, next) => {
     return next(new AppError("No chat found with that id", 400));
   }
 
+  // Checking if the chat is related to currently logged in user
+  const { users } = chat;
+  const isChatRelated = users.some((usr) => usr.id === req.user.id);
+
+  if (!isChatRelated) {
+    return next(new AppError("No chat found with this ID for you!", 400));
+  }
+
   res.status(200).json({
     status: "success",
     data: {
@@ -110,7 +118,7 @@ exports.removeGroupUser = catchAsync(async (req, res, next) => {
   const chat = await Chat.findById(chatId);
 
   if (!chat) {
-    return next(new AppError("No chat found with id", 400));
+    return next(new AppError("No chat found with ID", 400));
   }
 
   // find if the group admin is the user who request to remove

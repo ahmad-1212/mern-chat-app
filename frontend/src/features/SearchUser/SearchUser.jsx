@@ -1,6 +1,6 @@
 import { useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
-import ButtonSecondary from "../../ui/ButtonSecondary";
+import ButtonSecondary from "../../Components/UI/ButtonSecondary";
 import SearchUserModal from "./SearchUserModal";
 
 const SearchUser = () => {

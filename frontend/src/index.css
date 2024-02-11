@@ -23,7 +23,7 @@ body {
   font-size: 1.6rem;
   background-color: var(--color-grey-300);
   width: 100%;
-  min-height: 100vh;
+  min-height: 100dvh;
 }
 
 .lds-ring {

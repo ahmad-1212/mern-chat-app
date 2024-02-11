@@ -6,7 +6,7 @@ export default defineConfig(() => {
     // vite config
     plugins: [react()],
     server: {
-      port: 3000,
+      port: 8000,
     },
   };
 });

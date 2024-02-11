@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import ScrollableFeed from "react-scrollable-feed";
 import styled from "@emotion/styled";
 import { useQueryClient } from "@tanstack/react-query";
@@ -7,7 +7,7 @@ import { Box, Typography } from "@mui/material";
 
 import SingleMessage from "./SingleMessage";
 import { useMessages } from "./useMessages";
-import FullPageLoading from "../../ui/FullPageLoading";
+import FullPageLoading from "../../Components/UI/FullPageLoading";
 import SendMessage from "./SendMessage";
 import { socket } from "../../socket";
 
@@ -27,20 +27,16 @@ const MessageBox = styled.ul`
 const Messages = () => {
   const queryClient = useQueryClient();
   const { messages, isLoading } = useMessages();
-  const [chatMessages, setChatMessages] = useState(messages);
   const [searchParams] = useSearchParams();
   const chatId = searchParams.get("chat-id");
 
-  useEffect(() => {
-    if (!messages) return;
-    setChatMessages(messages);
-  }, [messages, setChatMessages]);
-
-  // Listen for event if someone send message
+  // Listen for revie-message event
   useEffect(() => {
     socket.on("receive-message", (message) => {
       if (chatId !== message.chat._id) return;
-      queryClient.invalidateQueries(["messages", chatId]);
+      queryClient.setQueryData(["messages", chatId], (oldData) => {
+        return { ...oldData, messages: [...oldData.messages, message] };
+      });
     });
   }, [queryClient, chatId]);
 
@@ -50,9 +46,9 @@ const Messages = () => {
     <>
       {!isLoading && (
         <MessageBox>
-          {chatMessages && chatMessages.length !== 0 ? (
+          {messages && messages.length !== 0 ? (
             <ScrollableFeed forceScroll={true}>
-              {chatMessages?.map((message) => (
+              {messages?.map((message) => (
                 <SingleMessage key={message._id} message={message} />
               ))}
             </ScrollableFeed>
@@ -74,7 +70,7 @@ const Messages = () => {
         </MessageBox>
       )}
       {isLoading && <FullPageLoading />}
-      <SendMessage setChatMessages={setChatMessages} />
+      <SendMessage />
     </>
   );
 };

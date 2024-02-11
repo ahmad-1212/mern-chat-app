@@ -6,8 +6,8 @@ import { useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 
 import { useCreateChat } from "../Chats/useCreateChat";
-import UserAvatar from "../../ui/UserAvatar";
-import FullPageLoading from "../../ui/FullPageLoading";
+import UserAvatar from "../../Components/UI/UserAvatar";
+import FullPageLoading from "../../Components/UI/FullPageLoading";
 
 const SingleUser = styled.li`
   list-style: none;

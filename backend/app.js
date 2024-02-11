@@ -19,7 +19,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: "https://mern-chat-app-1212.netlify.app",
+    origin: ["https://mern-chat-app-1212.netlify.app", "http://localhost:8000"],
     methods: "GET,POST,PUT,PATCH,DELETE",
     credentials: true,
   })

@@ -4,7 +4,7 @@ import styled from "@emotion/styled";
 import { Box, Stack } from "@mui/material";
 import SearchSharpIcon from "@mui/icons-material/SearchSharp";
 
-import SpinnerSmall from "../../ui/SpinnerSmall";
+import SpinnerSmall from "../../Components/UI/SpinnerSmall";
 import { useSearchUser } from "./useSearchUser";
 
 const StyledInput = styled.input`

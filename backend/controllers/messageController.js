@@ -34,6 +34,14 @@ exports.getAllMessages = catchAsync(async (req, res, next) => {
     return next(new AppError("No chat is found with id", 400));
   }
 
+  // Checking if chat is related to currently logged in user
+
+  const { users } = chat;
+  const isChatRelated = users.some((usr) => usr.id === req.user.id);
+  if (!isChatRelated) {
+    return next(new AppError("No messages found for this ID for you", 400));
+  }
+
   const allMessages = await Message.find({
     chat: chatId,
   })

@@ -6,11 +6,11 @@ import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 
 import SearchUserInput from "./SearchUserInput";
 import SearchUserResult from "./SearchUserResult";
-import ButtonSecondary from "../../ui/ButtonSecondary";
-import Input from "../../ui/Input";
+import ButtonSecondary from "../../Components/UI/ButtonSecondary";
+import Input from "../../Components/UI/Input";
 import { useCreateGroupChat } from "../Chats/useCreateGroupChat";
 import { useUser } from "../Authentication/useUser";
-import SpinnerSmall from "../../ui/SpinnerSmall";
+import SpinnerSmall from "../../Components/UI/SpinnerSmall";
 
 const StyledModal = styled.div`
   background-color: ${(props) => props.colors.grey.light};

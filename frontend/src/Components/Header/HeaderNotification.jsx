@@ -4,9 +4,9 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import { IconButton, Popover } from "@mui/material";
 import { useSearchParams } from "react-router-dom";
 
-import Notification from "../Components/Notification/Notification";
-import { useNotification } from "../context/Notification";
-import { socket } from "../socket";
+import Notification from "../../features/Notification/Notification";
+import { useNotification } from "../../context/Notification";
+import { socket } from "../../socket";
 
 const NotificationDot = styled.div`
   position: absolute;
@@ -27,7 +27,6 @@ const HeaderNotification = () => {
   const chatId = searchParams.get("chat-id");
   const open = Boolean(anchorElement);
   const id = open ? "notification" : undefined;
-
 
   // To set notification of chat which is not open
   useEffect(() => {

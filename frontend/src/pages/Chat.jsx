@@ -1,4 +1,4 @@
-import ChatBox from "../Components/Chats/ChatBox";
+import ChatBox from "../features/Chats/ChatBox";
 
 const Chat = () => {
   return <ChatBox />;

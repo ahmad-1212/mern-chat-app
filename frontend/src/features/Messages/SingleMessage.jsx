@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { useTheme } from "@emotion/react";
 
-import UserAvatar from "../../ui/UserAvatar";
+import UserAvatar from "../../Components/UI/UserAvatar";
 import { useUser } from "../Authentication/useUser";
 
 const StyledMessage = styled.li`

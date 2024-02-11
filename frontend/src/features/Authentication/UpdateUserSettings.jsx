@@ -9,11 +9,11 @@ import { useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 
 import { useUpdateUser } from "./useUpdateUser";
-import ButtonSecondary from "../../ui/ButtonSecondary";
-import SpinnerSmall from "../../ui/SpinnerSmall";
-import FormRowVertical from "../../ui/FormRowVertical";
-import Form from "../../ui/Form";
-import Input from "../../ui/Input";
+import ButtonSecondary from "../../Components/UI/ButtonSecondary";
+import SpinnerSmall from "../../Components/UI/SpinnerSmall";
+import FormRowVertical from "../../Components/UI/FormRowVertical";
+import Form from "../../Components/UI/Form";
+import Input from "../../Components/UI/Input";
 
 const Img = styled.img`
   width: 15rem;

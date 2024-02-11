@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styled from "@emotion/styled";
 import {
   Box,
@@ -7,16 +8,16 @@ import {
   Tooltip,
   Typography,
 } from "@mui/material";
+import { useTheme } from "@emotion/react";
 import CloseIcon from "@mui/icons-material/Close";
-import { useUser } from "../Components/Authentication/useUser";
+import EditIcon from "@mui/icons-material/Edit";
+
+import { useUser } from "../../features/Authentication/useUser";
 import UserAvatar from "./UserAvatar";
 import ButtonSecondary from "./ButtonSecondary";
-import { useTheme } from "@emotion/react";
-import { useLogout } from "../Components/Authentication/useLogout";
+import { useLogout } from "../../features/Authentication/useLogout";
 import SpinnerSmall from "./SpinnerSmall";
-import EditIcon from "@mui/icons-material/Edit";
-import UpdateUserSettings from "../Components/Authentication/UpdateUserSettings";
-import { useState } from "react";
+import UpdateUserSettings from "../../features/Authentication/UpdateUserSettings";
 
 const StyledModal = styled.div`
   background-color: ${(props) => props.colors.grey.light};

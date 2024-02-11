@@ -2,7 +2,7 @@ import { Box, Typography } from "@mui/material";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 import { useNavigate } from "react-router-dom";
 
-import ButtonSecondary from "../ui/ButtonSecondary";
+import ButtonSecondary from "../Components/UI/ButtonSecondary";
 
 const PageNotFound = () => {
   const navigate = useNavigate();

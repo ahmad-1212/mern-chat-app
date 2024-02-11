@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { useTheme } from "@emotion/react";
 
-import Chats from "../Components/Chats/Chats";
+import Chats from "../../features/Chats/Chats";
 
 const StyledSidebare = styled.aside`
   padding: 3rem 2rem 0;

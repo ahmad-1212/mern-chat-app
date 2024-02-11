@@ -1,10 +1,25 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
+import { socket } from "../socket";
+import { useUser } from "../features/Authentication/useUser";
 
 const OnlineUsers = createContext();
 
 const OnlineUsersProvider = ({ children }) => {
+  const { user, isAuthenticated } = useUser();
   const [onlineUsers, setOnlineUsers] = useState([]);
   const [chatUsers, setChatUsers] = useState(null);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      socket.connect();
+      socket.emit("user-online", user?.user._id);
+      socket.on("get-online-users", (users) => {
+        setOnlineUsers(users);
+      });
+    }
+
+    return () => socket.disconnect();
+  }, [isAuthenticated, user?.user._id]);
 
   return (
     <OnlineUsers.Provider

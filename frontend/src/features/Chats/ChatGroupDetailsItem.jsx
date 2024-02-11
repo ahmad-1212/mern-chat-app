@@ -2,8 +2,10 @@ import { useState } from "react";
 import styled from "@emotion/styled";
 import { Box, Button, IconButton, Stack, Typography } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { useQueryClient } from "@tanstack/react-query";
+import { useSearchParams } from "react-router-dom";
 
-import UserAvatar from "../../ui/UserAvatar";
+import UserAvatar from "../../Components/UI/UserAvatar";
 import { useOnlineUsers } from "../../context/OnlineUsers";
 import { useRemoveGroupChatUser } from "./useRemoveGroupChatUser";
 
@@ -36,12 +38,25 @@ const ChatGroupDetailsItem = ({ user, chat, you = false, isAdmin = false }) => {
   const { onlineUsers } = useOnlineUsers();
   const [showRemove, setShowRemove] = useState(false);
   const { removeUser, isLoading } = useRemoveGroupChatUser();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const queryClient = useQueryClient();
 
   // Check if user is online or not
   const isUserOnline = onlineUsers.find((usr) => usr.userId === user._id);
 
   const handleRemoveUser = () => {
-    removeUser({ userId: user._id, chatId: chat._id });
+    removeUser(
+      { userId: user._id, chatId: chat._id },
+      {
+        onSuccess: () => {
+          if (chat.users.length < 3) {
+            queryClient.invalidateQueries(["chats"]);
+            searchParams.set("chat-id", "");
+            setSearchParams(searchParams);
+          }
+        },
+      }
+    );
   };
 
   return (

@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import LoginForm from "../Components/Authentication/LoginForm";
-import SignupForm from "../Components/Authentication/SignupForm";
+import LoginForm from "../features/Authentication/LoginForm";
+import SignupForm from "../features/Authentication/SignupForm";
 import { Box, Stack, Typography } from "@mui/material";
 import { useSearchParams } from "react-router-dom";
 

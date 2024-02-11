@@ -3,13 +3,13 @@ import { useSearchParams } from "react-router-dom";
 import isEmail from "validator/lib/isemail";
 import { Box } from "@mui/material";
 
-import ButtonSecondary from "../../ui/ButtonSecondary";
-import Form from "../../ui/Form";
-import Input from "../../ui/Input";
-import FormRowVertical from "../../ui/FormRowVertical";
-import FormLabel from "../../ui/FormLabel";
+import ButtonSecondary from "../../Components/UI/ButtonSecondary";
+import Form from "../../Components/UI/Form";
+import Input from "../../Components/UI/Input";
+import FormRowVertical from "../../Components/UI/FormRowVertical";
+import FormLabel from "../../Components/UI/FormLabel";
 import { useSignup } from "./useSignup";
-import SpinnerSmall from "../../ui/SpinnerSmall";
+import SpinnerSmall from "../../Components/UI/SpinnerSmall";
 
 const SignupForm = () => {
   const [searchParams, setSearchParams] = useSearchParams();

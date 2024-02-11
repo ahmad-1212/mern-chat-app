@@ -82,6 +82,7 @@ chatNamespace.on("connection", (socket) => {
 
   socket.on("disconnect", () => {
     onlineUsers = onlineUsers.filter((user) => user.socketId !== socket.id);
+    console.log("disconnect");
     chatNamespace.emit("get-online-users", onlineUsers);
   });
 });

@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Button, Typography } from "@mui/material";
 
-import UserAvatar from "./UserAvatar";
-import { useUser } from "../Components/Authentication/useUser";
-import UserModal from "./UserModal";
+import { useUser } from "../../features/Authentication/useUser";
+import UserAvatar from "../UI/UserAvatar";
+import UserModal from "../UI/UserModal";
 
 const HeaderMenu = () => {
   const [openModal, setOpenModal] = useState(false);

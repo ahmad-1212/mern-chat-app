@@ -6,7 +6,7 @@ import { useTheme } from "@emotion/react";
 
 import ChatItem from "./ChatItem";
 import { useChats } from "./useChats";
-import SpinnerSmall from "../../ui/SpinnerSmall";
+import SpinnerSmall from "../../Components/UI/SpinnerSmall";
 import SearchUserModal from "../SearchUser/SearchUserModal";
 
 const StyledChats = styled.ul`

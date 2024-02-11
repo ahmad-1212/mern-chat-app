@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Box, Stack, Typography } from "@mui/material";
 
-import UserAvatar from "../../ui/UserAvatar";
+import UserAvatar from "../../Components/UI/UserAvatar";
 import { socket } from "../../socket";
 import { useOnlineUsers } from "../../context/OnlineUsers";
 import { useChat } from "./useChat";
@@ -40,7 +40,7 @@ const ChatUser = () => {
         py="0.5rem"
         px="3rem"
         mx="auto"
-        sx={{ width: { xs: "fit-content", sm: "30rem" } }}
+        sx={{ width: { xs: "90%", sm: "30rem" } }}
       >
         <Stack direction="row" gap="3rem" alignItems="center">
           <Box width="5rem" height="5rem">

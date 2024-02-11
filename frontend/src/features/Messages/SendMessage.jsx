@@ -34,7 +34,7 @@ const Input = styled.input`
 
 let typingTimeout;
 
-const SendMessage = ({ setChatMessages }) => {
+const SendMessage = () => {
   const queryClient = useQueryClient();
   const {
     user: { user },
@@ -54,23 +54,28 @@ const SendMessage = ({ setChatMessages }) => {
 
     if (!message) return;
 
+    // Emit stop typing event
     socket.emit("stop-typing", chatId);
 
-    setChatMessages((prev) => [
-      ...prev,
-      {
-        _id: Date.now(),
-        content: message,
-        sender: {
-          _id: user._id,
-        },
+    // Create new Message
+    const newMessageObj = {
+      _id: Math.random().toString().slice(3, -1) + Date.now(),
+      content: message,
+      sender: {
+        _id: user._id,
       },
-    ]);
+    };
+
+    // Add new message in cached messages
+    queryClient.setQueryData(["messages", chatId], (oldData) => {
+      return { ...oldData, messages: [...oldData.messages, newMessageObj] };
+    });
+
+    // Send Message
     sendMessage(message, {
       onSuccess: (data) => {
         socket.emit("send-message", data.message, user._id);
-        setChatMessages((prev) => [...prev, data.message]);
-        queryClient.invalidateQueries(["chats"]);
+        queryClient.invalidateQueries({ queryKey: ["chats"] });
       },
     });
 

@@ -2,10 +2,10 @@ import { useTheme } from "@emotion/react";
 import styled from "@emotion/styled";
 import { Stack } from "@mui/material";
 
-import HeaderMenu from "./HeaderMenu";
-import HeaderNotification from "./HeaderNotification";
-import SearchUser from "../Components/SearchUser/SearchUser";
-import { useScreen } from "../hooks/useScreen";
+import { useScreen } from "../../hooks/useScreen";
+import SearchUser from "../../features/SearchUser/SearchUser";
+import HeaderNotification from "../Header/HeaderNotification";
+import HeaderMenu from "../Header/HeaderMenu";
 
 const StyledHeader = styled(Stack)`
   grid-column: 1 / -1;

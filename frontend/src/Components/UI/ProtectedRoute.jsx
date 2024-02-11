@@ -1,7 +1,8 @@
-import { useNavigate } from "react-router-dom";
-import { useUser } from "../Components/Authentication/useUser";
-import FullPageLoading from "./FullPageLoading";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
+import { useUser } from "../../features/Authentication/useUser";
+import FullPageLoading from "./FullPageLoading";
 
 const ProtectedRoute = ({ children, authPage = false }) => {
   const { isAuthenticated, isLoading } = useUser();
